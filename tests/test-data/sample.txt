@@ -1,0 +1,1 @@
+Sample file used for the Playwright file-upload task.
