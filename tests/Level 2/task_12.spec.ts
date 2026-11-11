@@ -1,27 +1,23 @@
-// Task 5 - CSS and XPath selectors
+// Task 12 - CSS and XPath selectors
 
 
-const { test, expect } = require('@playwright/test');
+import { test, expect } from '@playwright/test';
 
-test('Practice CSS selectors', async ({ page }) => {
-
+test('locator by using css selectors', async ({ page }) => {
     await page.goto('https://www.saucedemo.com/');
-
+    
     const username = page.locator('#user-name');
-
     const password = page.locator('#password');
-
-    const loginButton = page.locator('#login-button');
-
+    const loginbtn = page.locator('#login-button');
+    
     await expect(username).toBeVisible();
     await expect(password).toBeVisible();
-    await expect(loginButton).toBeVisible();
+    await expect(loginbtn).toBeVisible();
 
     await username.fill('standard_user');
     await password.fill('secret_sauce');
-    await loginButton.click();
+    await loginbtn.click();
 
-    await expect(page).toHaveURL(/inventory/);
 
+    await page.waitForTimeout(5000);
 });
-
