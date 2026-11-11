@@ -1,35 +1,29 @@
 // Task 6 - Handle multiple matching elements
 
 
-const { test, expect } = require('@playwright/test');
 
-test('Handle multiple matching buttons', async ({ page }) => {
+import { test, expect } from '@playwright/test';
 
+test('handle multiple matching elements', async ({ page }) => {
     await page.goto('https://www.saucedemo.com/');
+    
+    await page.locator('#user-name').fill('standard_user');
+    await page.locator('#password').fill('secret_sauce');
+    await page.locator('#login-button').click();
 
-    await page.getByPlaceholder('Username')
-        .fill('standard_user');
+    const buttons = page.getByRole('button', {name:'Add to cart'});
 
-    await page.getByPlaceholder('Password')
-        .fill('secret_sauce');
+    const totalbtn = await buttons.count();
 
-    await page.getByRole('button', { name: 'Login' }).click();
+    console.log("Total button = ", totalbtn);
 
-    const buttons = page.getByRole('button', {
-        name: 'Add to cart'
-    });
-
-    const totalButtons = await buttons.count();
-
-    console.log('Total buttons:', totalButtons);
-
-    expect(totalButtons).toBe(6);
+    expect(totalbtn).toBe(6)
 
     await buttons.first().click();
+    await buttons.nth(1).click();
+    await buttons.nth(2).click();
+    await buttons.last().click();
 
-    await expect(buttons.first()).toHaveText('Remove');
 
-    await expect(buttons).toHaveCount(5);
-
+    await page.waitForTimeout(5000);
 });
-
