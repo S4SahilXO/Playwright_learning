@@ -23,7 +23,7 @@ test('Login into website using keyboard action', async ({page}) => {
     await Password.press('Enter');
 
 
-    await expect(page).toHaveURL(/Inverntory/);
+    await expect(page).toHaveURL(/inventory\.html/);
 
     console.log('Form submitted successfully!');
 

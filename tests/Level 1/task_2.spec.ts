@@ -11,6 +11,6 @@ test('open google', async ({page}) => {
 
     console.log("Google website open and it verify the title of page");
 
-    await page.waitForTimeout(10000)
+    // await page.waitForTimeout(10000)
     
 })

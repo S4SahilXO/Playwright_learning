@@ -1,1 +1,1 @@
-Sample file used for the Playwright file-upload task.
+Sample file used by the Level 3 Task 19 upload test.
